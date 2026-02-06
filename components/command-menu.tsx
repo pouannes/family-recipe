@@ -71,18 +71,23 @@ export function CommandMenu({ recipes }: { recipes: SearchableRecipe[] }) {
               onSelect={() => selectRecipe(recipe.slug)}
               className="cursor-pointer rounded-md px-3 py-2 data-[selected=true]:bg-sand data-[selected=true]:text-terracotta"
             >
-              <span className="font-heading font-semibold">{recipe.title}</span>
-              {recipe.tags.length > 0 && (
-                <span className="ml-2 inline-flex gap-1">
-                  {recipe.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-sm bg-terracotta/8 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-terracotta"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </span>
+              <div className="flex items-baseline gap-2">
+                <span className="font-heading font-semibold">{recipe.title}</span>
+                {recipe.tags.length > 0 && (
+                  <span className="inline-flex gap-1">
+                    {recipe.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-sm bg-terracotta/8 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-terracotta"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </span>
+                )}
+              </div>
+              {recipe.description && (
+                <p className="mt-0.5 text-sm italic text-taupe">{recipe.description}</p>
               )}
             </Command.Item>
           ))}
