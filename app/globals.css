@@ -1,26 +1,47 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-parchment: #F7F1E6;
+  --color-espresso: #3A2E24;
+  --color-walnut: #2A1F17;
+  --color-terracotta: #9B3B1E;
+  --color-taupe: #7A6B5D;
+  --color-wheat: #C8B99A;
+  --color-sand: #D4C5AE;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-source-serif);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-parchment);
+  color: var(--color-espresso);
+  font-family: var(--font-body);
+}
+
+/* CSS counter for method steps in MDX rendered ordered lists */
+ol.method-steps {
+  counter-reset: step;
+  list-style: none;
+  padding-left: 0;
+}
+
+ol.method-steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+ol.method-steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-wheat);
+  line-height: 1;
 }
