@@ -1,3 +1,5 @@
+import type { Locale } from "@/lib/i18n";
+
 export interface Ingredient {
   name: string;
   quantity: number;
@@ -6,6 +8,7 @@ export interface Ingredient {
 }
 
 export interface Recipe {
+  locale: Locale;
   title: string;
   slug: string;
   description?: string;

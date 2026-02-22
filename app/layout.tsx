@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Source_Serif_4 } from "next/font/google";
-import { recipes } from "#site/content";
-import { CommandMenu } from "@/components/command-menu";
-import type { SearchableRecipe } from "@/lib/search";
+import { headers } from "next/headers";
+import { defaultLocale, type Locale } from "@/lib/i18n";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -23,23 +22,20 @@ export const metadata: Metadata = {
   description: "Our collection of family recipes",
 };
 
-const searchableRecipes: SearchableRecipe[] = recipes.map((recipe) => {
-  const { content, ...rest } = recipe;
-  void content;
-  return rest;
-});
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headerList = await headers();
+  const locale = (headerList.get("x-locale") as Locale) || defaultLocale;
+
   return (
-    <html lang="en" className={`${playfair.variable} ${sourceSerif.variable}`}>
-      <body className="antialiased">
-        {children}
-        <CommandMenu recipes={searchableRecipes} />
-      </body>
+    <html
+      lang={locale}
+      className={`${playfair.variable} ${sourceSerif.variable}`}
+    >
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

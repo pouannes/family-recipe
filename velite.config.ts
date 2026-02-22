@@ -6,8 +6,9 @@ export default defineConfig({
       name: "Recipe",
       pattern: "recipes/**/*.mdx",
       schema: s.object({
+        locale: s.enum(["fr", "en"]),
         title: s.string(),
-        slug: s.slug("recipes"),
+        slug: s.string(),
         description: s.string().optional(),
         prepTime: s.number(),
         cookTime: s.number(),

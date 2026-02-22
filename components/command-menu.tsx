@@ -8,12 +8,21 @@ import {
   searchRecipes,
   type SearchableRecipe,
 } from "@/lib/search";
+import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/i18n";
 
-export function CommandMenu({ recipes }: { recipes: SearchableRecipe[] }) {
+export function CommandMenu({
+  recipes,
+  locale,
+}: {
+  recipes: SearchableRecipe[];
+  locale: Locale;
+}) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const router = useRouter();
   const index = useMemo(() => createRecipeIndex(recipes), [recipes]);
+  const t = getDictionary(locale);
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -31,7 +40,7 @@ export function CommandMenu({ recipes }: { recipes: SearchableRecipe[] }) {
   function selectRecipe(slug: string) {
     setOpen(false);
     setQuery("");
-    router.push(`/recipes/${slug}`);
+    router.push(`/${locale}/recipes/${slug}`);
   }
 
   return (
@@ -41,7 +50,7 @@ export function CommandMenu({ recipes }: { recipes: SearchableRecipe[] }) {
         setOpen(value);
         if (!value) setQuery("");
       }}
-      label="Search recipes"
+      label={t.searchRecipes}
       className="fixed inset-0 z-50"
     >
       {/* Overlay */}
@@ -55,13 +64,13 @@ export function CommandMenu({ recipes }: { recipes: SearchableRecipe[] }) {
         <Command.Input
           value={query}
           onValueChange={setQuery}
-          placeholder="Search recipes…"
+          placeholder={t.searchRecipes}
           className="w-full border-b border-wheat bg-transparent px-4 py-3 text-espresso placeholder:text-taupe/60 focus:outline-none"
         />
 
         <Command.List className="max-h-72 overflow-y-auto p-2">
           <Command.Empty className="px-4 py-6 text-center italic text-taupe">
-            No recipes found.
+            {t.noRecipesFound}
           </Command.Empty>
 
           {results.map((recipe) => (
@@ -72,7 +81,9 @@ export function CommandMenu({ recipes }: { recipes: SearchableRecipe[] }) {
               className="cursor-pointer rounded-md px-3 py-2 data-[selected=true]:bg-sand data-[selected=true]:text-terracotta"
             >
               <div className="flex items-baseline gap-2">
-                <span className="font-heading font-semibold">{recipe.title}</span>
+                <span className="font-heading font-semibold">
+                  {recipe.title}
+                </span>
                 {recipe.tags.length > 0 && (
                   <span className="inline-flex gap-1">
                     {recipe.tags.map((tag) => (
@@ -87,7 +98,9 @@ export function CommandMenu({ recipes }: { recipes: SearchableRecipe[] }) {
                 )}
               </div>
               {recipe.description && (
-                <p className="mt-0.5 text-sm italic text-taupe">{recipe.description}</p>
+                <p className="mt-0.5 text-sm italic text-taupe">
+                  {recipe.description}
+                </p>
               )}
             </Command.Item>
           ))}
@@ -98,19 +111,19 @@ export function CommandMenu({ recipes }: { recipes: SearchableRecipe[] }) {
             <kbd className="rounded border border-wheat bg-sand/40 px-1.5 py-0.5 font-mono">
               ↑↓
             </kbd>{" "}
-            navigate
+            {t.navigate}
           </span>
           <span>
             <kbd className="rounded border border-wheat bg-sand/40 px-1.5 py-0.5 font-mono">
               ↵
             </kbd>{" "}
-            select
+            {t.select}
           </span>
           <span>
             <kbd className="rounded border border-wheat bg-sand/40 px-1.5 py-0.5 font-mono">
               esc
             </kbd>{" "}
-            close
+            {t.close}
           </span>
         </div>
       </div>

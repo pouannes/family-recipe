@@ -8,10 +8,19 @@ import {
   type SearchableRecipe,
 } from "@/lib/search";
 import { KbdShortcut } from "@/components/kbd-shortcut";
+import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/i18n";
 
-export function RecipeSearch({ recipes }: { recipes: SearchableRecipe[] }) {
+export function RecipeSearch({
+  recipes,
+  locale,
+}: {
+  recipes: SearchableRecipe[];
+  locale: Locale;
+}) {
   const [query, setQuery] = useState("");
   const index = useMemo(() => createRecipeIndex(recipes), [recipes]);
+  const t = getDictionary(locale);
 
   const results = query.trim() ? searchRecipes(index, query) : recipes;
 
@@ -20,7 +29,7 @@ export function RecipeSearch({ recipes }: { recipes: SearchableRecipe[] }) {
       <div className="relative mb-10">
         <input
           type="text"
-          placeholder="Search recipes…"
+          placeholder={t.searchRecipes}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="w-full rounded-md border border-wheat bg-sand/30 px-4 py-3 pr-16 text-espresso placeholder:text-taupe/60 focus:border-terracotta focus:outline-none"
@@ -31,13 +40,16 @@ export function RecipeSearch({ recipes }: { recipes: SearchableRecipe[] }) {
       </div>
       {results.length === 0 ? (
         <p className="text-center italic text-taupe">
-          No recipes found for &ldquo;{query}&rdquo;
+          {t.noRecipesFound} &ldquo;{query}&rdquo;
         </p>
       ) : (
         <ul className="space-y-8">
           {results.map((recipe) => (
             <li key={recipe.slug}>
-              <Link href={`/recipes/${recipe.slug}`} className="group block">
+              <Link
+                href={`/${locale}/recipes/${recipe.slug}`}
+                className="group block"
+              >
                 <h2 className="font-heading text-2xl font-semibold text-walnut group-hover:text-terracotta">
                   {recipe.title}
                 </h2>
