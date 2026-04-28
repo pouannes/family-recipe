@@ -24,6 +24,11 @@ const dictionaries = {
     recipeNotFound: "Recette introuvable",
     hr: "h",
     min: "min",
+    filterAll: "Tout",
+    filterSweet: "Sucr\u00e9",
+    filterSavory: "Sal\u00e9",
+    sweetTag: "sucre",
+    savoryTag: "sale",
   },
   en: {
     siteTitle: "Family Recipes",
@@ -42,6 +47,11 @@ const dictionaries = {
     recipeNotFound: "Recipe not found",
     hr: "hr",
     min: "min",
+    filterAll: "All",
+    filterSweet: "Sweet",
+    filterSavory: "Savory",
+    sweetTag: "sweet",
+    savoryTag: "savory",
   },
 } as const;
 
