@@ -23,7 +23,7 @@ export function IngredientList({
               >
                 <span className="text-espresso">{item.name}</span>
                 <span className="ml-4 shrink-0 italic text-taupe">
-                  {item.quantity} {item.unit}
+                  {item.quantity} {item.unit === 'units' ? '' : item.unit}
                 </span>
               </li>
             ))}
