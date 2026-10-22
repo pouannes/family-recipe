@@ -52,7 +52,7 @@ export default async function RecipePage({
   const translationSlug = getTranslationSlug(locale, slug);
 
   return (
-    <div className="mx-auto max-w-[720px] px-4 py-10">
+    <div className="mx-auto max-w-[960px] px-4 py-10">
       <nav className="mb-6 flex items-center justify-between">
         <Link
           href={`/${locale}`}

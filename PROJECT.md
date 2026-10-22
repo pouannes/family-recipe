@@ -164,7 +164,7 @@ A rustic Italian warmth inspired by old cookbooks and handwritten recipe cards. 
 
 ### Layout
 
-- **Max width:** 720px, centered
+- **Max width:** 720px centered (recipe list), 960px on recipe pages
 - **Two-column grid:** 260px ingredients sidebar + flexible method column (48px gap)
 - **Spacing:** Generous vertical rhythm — 32-40px between major sections
 - **Dividers:** Horizontal lines with centered decorative element (✦)

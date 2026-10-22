@@ -77,7 +77,7 @@ Velite compiles MDX to a function body string stored in `content`. The `MDXConte
 Defined in `PROJECT.md` under "Cucina Style Guide":
 - **Fonts:** Playfair Display (headings via `font-heading`), Source Serif 4 (body via `font-body`)
 - **Colors:** Parchment (`#F7F1E6`) bg, Espresso (`#3A2E24`) text, Walnut (`#2A1F17`) headings, Terracotta (`#9B3B1E`) accent, Taupe (`#7A6B5D`) muted, Wheat (`#C8B99A`) borders, Sand (`#D4C5AE`) subtle bg
-- **Layout:** 720px max-width, two-column grid (260px sidebar + flexible method column)
+- **Layout:** 720px max-width (recipe list), 960px on recipe pages, two-column grid (260px sidebar + flexible method column)
 
 ## Gotchas
 
